@@ -1,0 +1,17 @@
+1、zookeeper配置dubbo/config/dubbo节点，作为默认全局节点
+2、dubbo/config/dubbo节点下新建属性dubbo.properties，值为
+    dubbo.registry.protocol=zookeeper
+    dubbo.registry.address=10.10.50.120:2181
+    dubbo.protocol.name=dubbo
+    dubbo.protocol.port=20880
+3、在配置文件dubbo-xml-config-center-provider.xml中增加<dubbo:config-center protocol="zookeeper" address="10.10.50.120:2181" />
+4、删除配置文件dubbo-xml-config-center-provider.xml中的<dubbo:registry protocol="zookeeper" address="10.10.50.120:2181" />
+    和<dubbo:protocol name="dubbo" port="20880" />
+5、启动项目，此时注册中心和协议的配置会从外部的配置中心读取
+6、在dubbo/config/节点下新建dubbo-xml-config-center-provider节点
+7、在dubbo/config/dubbo-xml-config-center-provider节点下新建属性dubbo.properties，值为
+    dubbo.application.name=dubbo-kid-xml-config-center-provider
+    dubbo.application.owner=Allen.W
+    dubbo.service.com.allen.dubbo.iface.DemoService.timeout=5000
+8、删除配置文件dubbo-xml-config-center-provider.xml中的<dubbo:application name="dubbo-kid-xml-config-center-provider" />的owner属性
+9、启动项目，通过日志观察注册的服务信息可发现，应用级的配置会从外部的配置中心读取

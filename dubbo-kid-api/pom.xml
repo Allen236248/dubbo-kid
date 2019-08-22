@@ -14,6 +14,7 @@
     <modules>
         <module>dubbo-kid-api-provider</module>
         <module>dubbo-kid-api-consumer</module>
+        <module>dubbo-kid-api-config-center-provider</module>
     </modules>
 
     <dependencies>
