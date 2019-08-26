@@ -17,6 +17,7 @@
 
 	<!-- 提供的服务 -->
 	<dubbo:service interface="com.allen.dubbo.iface.DemoService" ref="demoServiceImpl" />
-
+	<dubbo:service interface="com.allen.dubbo.iface.GroupService" group="moon" ref="moonGroupServiceImpl" />
+	<dubbo:service interface="com.allen.dubbo.iface.GroupService" group="star" ref="starGroupServiceImpl" />
 </beans>
 
