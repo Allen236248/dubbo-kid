@@ -1,5 +1,7 @@
 package com.allen.dubbo.xml;
 
+import com.allen.dubbo.iface.CallbackListener;
+import com.allen.dubbo.iface.CallbackService;
 import com.allen.dubbo.iface.DemoService;
 import com.allen.dubbo.iface.GroupService;
 import org.springframework.context.ApplicationContext;
@@ -13,7 +15,7 @@ public class XmlConsumerLauncher {
 
         //testDemoService(context);
         testGroupService(context);
-
+        testCallbackService(context);
     }
 
     public static void testDemoService(ApplicationContext context) {
@@ -30,5 +32,20 @@ public class XmlConsumerLauncher {
         groupService = context.getBean("starGroupService", GroupService.class);
         name = groupService.groupName();
         System.out.println(name);
+    }
+
+    public static void testCallbackService(ClassPathXmlApplicationContext context) {
+        CallbackService callbackService = context.getBean("callbackService", CallbackService.class);
+        callbackService.addListener("foo.bar", new CallbackListener() {
+            public void changed(String msg) {
+                System.out.println(msg);
+            }
+        });
+        context.start();
+        try {
+            Thread.currentThread().join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -11,12 +11,14 @@
 	<dubbo:application name="dubbo-kid-xml-consumer" owner="Allen.W" />
 
 	<!-- 定义注册中心 zk -->
-	<dubbo:registry protocol="zookeeper" address="10.10.50.120:2181" />
+	<dubbo:registry protocol="zookeeper" address="10.10.50.120:2181" group="allen_dubbo"/>
 
 	<!-- 引用服务 -->
 	<dubbo:reference id="demoService" interface="com.allen.dubbo.iface.DemoService" />
     <dubbo:reference id="moonGroupService" interface="com.allen.dubbo.iface.GroupService" group="moon" />
     <dubbo:reference id="starGroupService" interface="com.allen.dubbo.iface.GroupService" group="star" />
+
+    <dubbo:reference id="callbackService" interface="com.allen.dubbo.iface.CallbackService" />
 
 </beans>
 
