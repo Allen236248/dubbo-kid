@@ -13,9 +13,9 @@ public class XmlConsumerLauncher {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/applicationContext.xml");
         context.start();
 
-        //testDemoService(context);
-        testGroupService(context);
-        testCallbackService(context);
+        testDemoService(context);
+        //testGroupService(context);
+        //testCallbackService(context);
     }
 
     public static void testDemoService(ApplicationContext context) {

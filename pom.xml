@@ -13,6 +13,7 @@
         <module>dubbo-kid-iface</module>
         <module>dubbo-kid-api</module>
         <module>dubbo-kid-annotation</module>
+        <module>dubbo-kid-sourcecode</module>
     </modules>
 
     <properties>
@@ -30,6 +31,19 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>

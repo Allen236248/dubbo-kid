@@ -14,15 +14,17 @@
 	<dubbo:registry protocol="zookeeper" address="10.10.50.120:2181" group="allen_dubbo" />
 
 	<dubbo:protocol name="dubbo" port="20880" />
+	<dubbo:protocol name="rest" port="20890" server="tomcat" />
 
 	<!-- 提供的服务 -->
-	<dubbo:service interface="com.allen.dubbo.iface.DemoService" ref="demoServiceImpl" />
-	<dubbo:service interface="com.allen.dubbo.iface.GroupService" group="moon" ref="moonGroupServiceImpl" />
-	<dubbo:service interface="com.allen.dubbo.iface.GroupService" group="star" ref="starGroupServiceImpl" />
-	<dubbo:service interface="com.allen.dubbo.iface.CallbackService" ref="callbackServiceImpl" callbacks="1000" >
+	<dubbo:service interface="com.allen.dubbo.iface.DemoService" ref="demoServiceImpl" protocol="dubbo" />
+	<dubbo:service interface="com.allen.dubbo.iface.GroupService" group="moon" ref="moonGroupServiceImpl" protocol="dubbo" />
+	<dubbo:service interface="com.allen.dubbo.iface.GroupService" group="star" ref="starGroupServiceImpl" protocol="dubbo" />
+	<dubbo:service interface="com.allen.dubbo.iface.CallbackService" ref="callbackServiceImpl" callbacks="1000" protocol="dubbo" >
 		<dubbo:method name="addListener">
 			<dubbo:argument type="com.allen.dubbo.iface.CallbackListener" callback="true"/>
 		</dubbo:method>
 	</dubbo:service>
+	<dubbo:service interface="com.allen.dubbo.iface.RestService" ref="restServiceImpl" protocol="rest" />
 </beans>
 
