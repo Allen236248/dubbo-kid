@@ -13,7 +13,6 @@
         <module>dubbo-kid-iface</module>
         <module>dubbo-kid-api</module>
         <module>dubbo-kid-annotation</module>
-        <module>dubbo-kid-sourcecode</module>
     </modules>
 
     <properties>
