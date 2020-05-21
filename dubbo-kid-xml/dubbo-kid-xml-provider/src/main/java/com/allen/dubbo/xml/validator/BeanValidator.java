@@ -12,7 +12,7 @@ public final class BeanValidator {
         Set<ConstraintViolation<Object>> constraintViolations = validator.validate(params, groups);
         if (constraintViolations != null && !constraintViolations.isEmpty()) {
             for (ConstraintViolation<Object> validation : constraintViolations) {
-                throw new RuntimeException(validation.getMessage());
+                throw new ParameterErrorException(validation.getMessage());
             }
         }
     }

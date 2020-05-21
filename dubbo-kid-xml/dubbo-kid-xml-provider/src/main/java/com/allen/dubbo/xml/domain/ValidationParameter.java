@@ -18,6 +18,7 @@ public class ValidationParameter implements Serializable {
     @Range(min = 18, max = 50, message = "age不能小于18，不能大于50")
     private int age;
 
+    @NotNull(groups = ValidateGroups.Add.class, message = "loginDate不能为空")
     @Past(message = "loginDate必须是过去时间")
     private Date loginDate;
 

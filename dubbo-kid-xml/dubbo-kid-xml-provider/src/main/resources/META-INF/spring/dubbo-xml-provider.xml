@@ -11,9 +11,9 @@
 	<dubbo:application name="dubbo-kid-xml-provider" owner="Allen.W"  />
 
 	<!-- 当 ProtocolConfig 和 ServiceConfig 某属性没有配置时，采用此缺省值，可选 -->
-	<dubbo:provider />
+	<dubbo:provider  />
 
-	<!-- 定义注册中心 zk -->
+	<!-- 定义注册中心 zk：注册中心配置，竖号分隔表示同时连接多个不同注册中心，同一注册中心的多个集群地址用逗号分隔 -->
 	<dubbo:registry address="zookeeper://10.10.50.120:2181" group="allen_dubbo" />
 	<!-- <dubbo:registry protocol="zookeeper" address="10.10.50.120:2181" group="allen_dubbo" /> -->
 
@@ -31,5 +31,7 @@
 		</dubbo:method>
 	</dubbo:service>
 	<dubbo:service interface="com.allen.dubbo.iface.RestService" ref="restServiceImpl" protocol="rest" />
+
+	<dubbo:service interface="com.allen.dubbo.xml.provider.GenericTestService" ref="genericTestServiceImpl" protocol="dubbo" />
 </beans>
 
