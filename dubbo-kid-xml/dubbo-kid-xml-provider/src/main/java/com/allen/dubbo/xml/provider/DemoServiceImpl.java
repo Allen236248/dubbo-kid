@@ -13,7 +13,7 @@ public class DemoServiceImpl implements DemoService {
 
     @Override
     public String sayHello(String name) {
-        LOGGER.info("XML:Hello " + name);
+        LOGGER.info("XML:Hello " + name + " " +RpcContext.getContext().get("111"));
         return "XML:Hello " + name;
     }
 
