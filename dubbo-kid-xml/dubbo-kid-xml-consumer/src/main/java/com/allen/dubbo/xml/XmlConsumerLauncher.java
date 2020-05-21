@@ -1,9 +1,8 @@
 package com.allen.dubbo.xml;
 
+import com.alibaba.dubbo.rpc.service.GenericService;
 import com.allen.dubbo.domain.User;
 import com.allen.dubbo.iface.*;
-import org.apache.dubbo.rpc.RpcContext;
-import org.apache.dubbo.rpc.service.GenericService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -16,19 +15,17 @@ public class XmlConsumerLauncher {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/applicationContext.xml");
         context.start();
 
-        //ConsumerAction action = context.getBean(ConsumerAction.class);
-        //action.consume();
-        RpcContext.getContext().set("xxx", "yyy");
-        RpcContext.getContext().setAttachment("aaa", "bbb");
-
+        testAction(context);
         //testDemoService(context);
-
-        RpcContext.getContext().setAttachment("aaa", "bbb");
         //testGroupService(context);
         //testCallbackService(context);
         //testGenericServiceInvoke(context);
+        //testGenericServiceImplement(context);
+    }
 
-        testGenericServiceImplement(context);
+    public static void testAction(ApplicationContext context) {
+        ConsumerAction action = context.getBean(ConsumerAction.class);
+        action.consume();
     }
 
     public static void testDemoService(ApplicationContext context) {
@@ -43,7 +40,6 @@ public class XmlConsumerLauncher {
             String name = groupService.groupName();
             System.out.println(name);
         }
-
 
 //        GroupService groupService = context.getBean("moonGroupService", GroupService.class);
 //        String name = groupService.groupName();

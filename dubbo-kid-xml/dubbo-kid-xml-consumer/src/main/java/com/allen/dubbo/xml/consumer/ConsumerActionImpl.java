@@ -14,7 +14,7 @@ public class ConsumerActionImpl implements ConsumerAction {
     @Override
     public void consume() {
         String hello = demoService.sayHello("Allen");
-        System.out.println(hello);
+        System.out.println("Demo hello:" + hello);
     }
 
 }

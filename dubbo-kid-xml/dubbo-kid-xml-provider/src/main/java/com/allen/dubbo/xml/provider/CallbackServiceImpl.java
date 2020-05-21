@@ -2,8 +2,6 @@ package com.allen.dubbo.xml.provider;
 
 import com.allen.dubbo.iface.CallbackListener;
 import com.allen.dubbo.iface.CallbackService;
-import com.allen.dubbo.iface.DemoService;
-import org.apache.dubbo.rpc.RpcContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
