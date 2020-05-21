@@ -25,5 +25,7 @@
 
 	<dubbo:reference id="genericTestService" interface="com.allen.dubbo.xml.provider.GenericTestService" generic="true" />
 
+	<dubbo:reference id="barService" interface="com.allen.dubbo.iface.BarService" />
+
 </beans>
 

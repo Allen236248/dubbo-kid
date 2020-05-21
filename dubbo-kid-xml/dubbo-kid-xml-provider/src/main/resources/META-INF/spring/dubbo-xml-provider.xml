@@ -33,5 +33,7 @@
 	<dubbo:service interface="com.allen.dubbo.iface.RestService" ref="restServiceImpl" protocol="rest" />
 
 	<dubbo:service interface="com.allen.dubbo.xml.provider.GenericTestService" ref="genericTestServiceImpl" protocol="dubbo" />
+
+	<dubbo:service interface="com.allen.dubbo.iface.BarService" ref="genericServiceImpl" protocol="dubbo" />
 </beans>
 

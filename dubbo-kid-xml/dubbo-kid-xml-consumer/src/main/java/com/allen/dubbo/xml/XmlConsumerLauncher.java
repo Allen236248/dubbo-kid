@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class XmlConsumerLauncher {
 
-    public static void main(String...args) {
+    public static void main(String... args) {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/applicationContext.xml");
         context.start();
 
@@ -26,7 +26,9 @@ public class XmlConsumerLauncher {
         RpcContext.getContext().setAttachment("aaa", "bbb");
         //testGroupService(context);
         //testCallbackService(context);
-        testGenericService(context);
+        //testGenericServiceInvoke(context);
+
+        testGenericServiceImplement(context);
     }
 
     public static void testDemoService(ApplicationContext context) {
@@ -36,7 +38,7 @@ public class XmlConsumerLauncher {
     }
 
     public static void testGroupService(ApplicationContext context) {
-        for(int i = 0; i < 5; i++) {
+        for (int i = 0; i < 5; i++) {
             GroupService groupService = context.getBean("groupService", GroupService.class);
             String name = groupService.groupName();
             System.out.println(name);
@@ -70,9 +72,10 @@ public class XmlConsumerLauncher {
     /**
      * 泛化调用主要用于消费者没有 API 接口及模型类元的情况。
      * 此例中只知道接口：com.allen.dubbo.xml.provider.GenericTestService暴露了服务，但是本地没有接口
+     *
      * @param context
      */
-    public static void testGenericService(ApplicationContext context) {
+    public static void testGenericServiceInvoke(ApplicationContext context) {
         GenericService genericService = (GenericService) context.getBean("genericTestService");
         String result = (String) genericService.$invoke("invoke1", new String[]{"java.lang.String"}, new Object[]{"allen"});
         System.out.println(result);
@@ -81,10 +84,20 @@ public class XmlConsumerLauncher {
         Map<String, Object> user = new HashMap<>();
         user.put("name", "Allen");
         Object _user = genericService.$invoke("findUser", new String[]{"com.allen.dubbo.domain.User"}, new Object[]{user});
-        if(_user instanceof Map) {
-            user = (Map<String, Object>)_user;
+        if (_user instanceof Map) {
+            user = (Map<String, Object>) _user;
             System.out.println(user.get("name") + "," + user.get("email"));
         }
+    }
 
+    public static void testGenericServiceImplement(ApplicationContext context) {
+        BarService barService = context.getBean(BarService.class);
+        String result = barService.invoke1("Sophy");
+        System.out.println(result);
+
+        User user = new User();
+        user.setName("Sophy");
+        user = barService.findUser(user);
+        System.out.println(user.getName() + "," + user.getEmail());
     }
 }
