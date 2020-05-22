@@ -3,11 +3,18 @@ package com.allen.dubbo.xml;
 import com.alibaba.dubbo.rpc.service.GenericService;
 import com.allen.dubbo.domain.User;
 import com.allen.dubbo.iface.*;
+import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.Callable;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
+import java.util.function.BiConsumer;
 
 public class XmlConsumerLauncher {
 
@@ -15,12 +22,15 @@ public class XmlConsumerLauncher {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/applicationContext.xml");
         context.start();
 
-        testAction(context);
+        //testAction(context);
         //testDemoService(context);
         //testGroupService(context);
         //testCallbackService(context);
         //testGenericServiceInvoke(context);
         //testGenericServiceImplement(context);
+
+        testAsyncService1(context);
+        //testAsyncService2(context);
     }
 
     public static void testAction(ApplicationContext context) {
@@ -95,5 +105,53 @@ public class XmlConsumerLauncher {
         user.setName("Sophy");
         user = barService.findUser(user);
         System.out.println(user.getName() + "," + user.getEmail());
+    }
+
+    public static void testAsyncService1(ApplicationContext context) {
+        AsyncService asyncService = context.getBean(AsyncService.class);
+
+//        CompletableFuture<String> future = RpcContext.getContext().asyncCall(() -> asyncService.asyncInvoke1("async call request1"));
+//        try {
+//            future.get();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        } catch (ExecutionException e) {
+//            e.printStackTrace();
+//        }
+
+        asyncService.asyncInvoke1("async call request1");
+        CompletableFuture<String> future = RpcContext.getContext().getCompletableFuture();
+        future.whenComplete(new BiConsumer<String, Throwable>() {
+            @Override
+            public void accept(String s, Throwable t) {
+                if (t != null) {
+                    t.printStackTrace();
+                } else {
+                    System.out.println("Response: " + s);
+                }
+            }
+        });
+        // 早于结果输出
+        System.out.println("Executed before response return." + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+    }
+
+    public static void testAsyncService2(ApplicationContext context) {
+        AsyncService asyncService = context.getBean(AsyncService.class);
+
+        RpcContext.getContext().setAttachment("key1", "value1");
+        // 调用直接返回CompletableFuture
+        CompletableFuture<String> future = asyncService.asyncInvoke2("async call request");
+        future.whenComplete(new BiConsumer<String, Throwable>() {
+            @Override
+            public void accept(String s, Throwable t) {
+                if (t != null) {
+                    t.printStackTrace();
+                } else {
+                    System.out.println("Response: " + s);
+                }
+            }
+        });
+        // 早于结果输出
+        System.out.println("Executed before response return." + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
     }
 }

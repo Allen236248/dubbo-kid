@@ -35,5 +35,9 @@
 	<dubbo:service interface="com.allen.dubbo.xml.provider.GenericTestService" ref="genericTestServiceImpl" protocol="dubbo" />
 
 	<dubbo:service interface="com.allen.dubbo.iface.BarService" ref="genericServiceImpl" protocol="dubbo" />
+
+	<dubbo:service interface="com.allen.dubbo.iface.AsyncService" ref="asyncServiceImpl" protocol="dubbo" >
+		<dubbo:method name="asyncInvoke1" async="true" />
+	</dubbo:service>
 </beans>
 
