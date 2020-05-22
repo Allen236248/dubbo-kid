@@ -25,7 +25,7 @@ public class CallbackServiceImpl implements CallbackService {
                     try {
                         for(Map.Entry<String, CallbackListener> entry : listeners.entrySet()) {
                             String key = entry.getKey();
-                            entry.getValue().changed(getChanged(key));
+                            entry.getValue().changed(getChanged("Schedule:", key));
                         }
                         Thread.sleep(5000);//定时触发变更通知
                     } catch (Throwable t) {
@@ -40,10 +40,10 @@ public class CallbackServiceImpl implements CallbackService {
 
     public void addListener(String key, CallbackListener listener) {
         listeners.put(key, listener);
-        listener.changed(getChanged(key));
+        listener.changed(getChanged("Invoke:", key));
     }
 
-    private String getChanged(String key) {
-        return "Changed: " + key + " : " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+    private String getChanged(String prefix, String key) {
+        return prefix + "Changed: " + key + " : " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
     }
 }

@@ -11,9 +11,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 import java.util.function.BiConsumer;
 
 public class XmlConsumerLauncher {
@@ -25,11 +23,11 @@ public class XmlConsumerLauncher {
         //testAction(context);
         //testDemoService(context);
         //testGroupService(context);
-        //testCallbackService(context);
+        testCallbackService(context);
         //testGenericServiceInvoke(context);
         //testGenericServiceImplement(context);
 
-        testAsyncService1(context);
+        //testAsyncService1(context);
         //testAsyncService2(context);
     }
 
@@ -60,14 +58,13 @@ public class XmlConsumerLauncher {
 //        System.out.println(name);
     }
 
-    public static void testCallbackService(ClassPathXmlApplicationContext context) {
-        CallbackService callbackService = context.getBean("callbackService", CallbackService.class);
+    public static void testCallbackService(ApplicationContext context) {
+        CallbackService callbackService = context.getBean(CallbackService.class);
         callbackService.addListener("foo.bar", new CallbackListener() {
             public void changed(String msg) {
                 System.out.println(msg);
             }
         });
-        context.start();
         try {
             Thread.currentThread().join();
         } catch (InterruptedException e) {
