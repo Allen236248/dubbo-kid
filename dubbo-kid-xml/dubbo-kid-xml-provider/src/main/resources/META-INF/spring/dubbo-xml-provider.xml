@@ -22,7 +22,7 @@
 	<dubbo:protocol name="rest" port="20890" server="tomcat" />
 
 	<!-- 提供的服务：一个服务可以用多个协议暴露，一个服务也可以注册到多个注册中心 -->
-	<dubbo:service interface="com.allen.dubbo.iface.DemoService" ref="demoServiceImpl" protocol="dubbo" />
+	<dubbo:service interface="com.allen.dubbo.iface.DemoService" ref="demoServiceImpl" protocol="dubbo" stub="true" />
 	<dubbo:service interface="com.allen.dubbo.iface.GroupService" group="moon" ref="moonGroupServiceImpl" protocol="dubbo" />
 	<dubbo:service interface="com.allen.dubbo.iface.GroupService" group="star" ref="starGroupServiceImpl" protocol="dubbo" />
 	<dubbo:service interface="com.allen.dubbo.iface.CallbackService" ref="callbackServiceImpl" callbacks="1000" protocol="dubbo" >

@@ -22,8 +22,9 @@ public class XmlConsumerLauncher {
 
         //testAction(context);
         //testDemoService(context);
+        testDemoService2(context);
         //testGroupService(context);
-        testCallbackService(context);
+        //testCallbackService(context);
         //testGenericServiceInvoke(context);
         //testGenericServiceImplement(context);
 
@@ -39,6 +40,12 @@ public class XmlConsumerLauncher {
     public static void testDemoService(ApplicationContext context) {
         DemoService demoService = context.getBean(DemoService.class);
         String hello = demoService.sayHello("Allen");
+        System.out.println(hello);
+    }
+
+    public static void testDemoService2(ApplicationContext context) {
+        DemoService demoService = context.getBean(DemoService.class);
+        String hello = demoService.sayHelloSlowly("Allen");
         System.out.println(hello);
     }
 
