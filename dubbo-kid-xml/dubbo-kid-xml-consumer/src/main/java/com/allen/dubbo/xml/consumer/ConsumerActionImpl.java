@@ -2,7 +2,6 @@ package com.allen.dubbo.xml.consumer;
 
 import com.allen.dubbo.iface.ConsumerAction;
 import com.allen.dubbo.iface.DemoService;
-import org.apache.dubbo.rpc.RpcContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

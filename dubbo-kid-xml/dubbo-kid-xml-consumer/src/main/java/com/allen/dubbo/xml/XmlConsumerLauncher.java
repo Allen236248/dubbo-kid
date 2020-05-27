@@ -21,8 +21,8 @@ public class XmlConsumerLauncher {
         context.start();
 
         //testAction(context);
-        //testDemoService(context);
-        testDemoService2(context);
+        testDemoService(context);
+        //testDemoService2(context);
         //testGroupService(context);
         //testCallbackService(context);
         //testGenericServiceInvoke(context);

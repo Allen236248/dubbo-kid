@@ -7,6 +7,7 @@ public class Wrapper1 extends org.apache.dubbo.common.bytecode.Wrapper {
     public static String[] mns = new String[]{"sayHello"}; //方法名
     public static String[] dmns = new String[]{"sayHello"}; //声明的方法名
     public static Class[] mts0 = new Class[]{String.class}; //参数类型
+    public static Class[] mts1 = new Class[]{String.class}; //参数类型
 
     public Wrapper1() {
 
@@ -41,7 +42,6 @@ public class Wrapper1 extends org.apache.dubbo.common.bytecode.Wrapper {
         }
         throw new org.apache.dubbo.common.bytecode.NoSuchPropertyException("Not found property " + n + " field or setter method in class com.allen.dubbo.iface.DemoService.");
     }
-
 
     public Object getPropertyValue(Object o, String n) {
         com.allen.dubbo.iface.DemoService w;
