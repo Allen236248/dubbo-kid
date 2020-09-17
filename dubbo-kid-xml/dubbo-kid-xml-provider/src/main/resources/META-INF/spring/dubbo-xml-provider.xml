@@ -8,10 +8,10 @@
         http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
 	<!-- 声明应用信息，用于计算依赖关系 -->
-	<dubbo:application name="dubbo-kid-xml-provider" owner="Allen.W"  />
+	<dubbo:application name="dubbo-kid-xml-provider" owner="Allen.W" />
 
 	<!-- 当 ProtocolConfig 和 ServiceConfig 某属性没有配置时，采用此缺省值，可选 -->
-	<dubbo:provider filter="TestFilter" />
+	<dubbo:provider filter="TestFilter" listener="ExportListener" />
 
 	<!-- 定义注册中心 zk：注册中心配置，竖号分隔表示同时连接多个不同注册中心，同一注册中心的多个集群地址用逗号分隔 -->
 	<dubbo:registry address="zookeeper://10.10.50.120:2181" group="allen_dubbo" />

@@ -24,7 +24,7 @@ public class XmlConsumerLauncher {
         testDemoService(context);
         //testDemoService2(context);
         //testGroupService(context);
-        //testCallbackService(context);
+        testCallbackService(context);
         //testGenericServiceInvoke(context);
         //testGenericServiceImplement(context);
 
