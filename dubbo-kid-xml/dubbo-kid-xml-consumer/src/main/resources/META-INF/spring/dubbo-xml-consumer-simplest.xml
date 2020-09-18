@@ -1,0 +1,23 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans    
+        http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+        http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+	<!-- 声明应用名称 -->
+	<dubbo:application name="dubbo-kid-xml-consumer" owner="Allen.W" />
+
+	<!-- 当 ReferenceConfig 某属性没有配置时，采用此缺省值，可选 -->
+	<dubbo:consumer check="false" retries="1" timeout="3000" />
+
+	<!-- 定义注册中心 zk -->
+	<dubbo:registry protocol="zookeeper" address="10.10.50.120:2181" />
+
+	<!-- 引用服务：一个引用可以指向多个注册中心 -->
+	<dubbo:reference id="demoService" interface="com.allen.dubbo.iface.DemoService" />
+
+</beans>
+

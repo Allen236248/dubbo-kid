@@ -9,6 +9,8 @@
     
 	<context:component-scan base-package="com.allen.dubbo.xml.provider" />
 
-	<import resource="classpath*:/META-INF/spring/dubbo-xml-provider.xml"/>
+	<!--<import resource="classpath*:/META-INF/spring/dubbo-xml-provider.xml"/>-->
+
+	<import resource="classpath*:/META-INF/spring/dubbo-xml-provider-simplest.xml"/>
 
 </beans>
