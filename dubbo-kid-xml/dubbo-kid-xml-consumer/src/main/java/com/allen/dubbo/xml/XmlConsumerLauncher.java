@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 import java.util.function.BiConsumer;
 
 public class XmlConsumerLauncher {
@@ -20,11 +21,24 @@ public class XmlConsumerLauncher {
         ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("classpath*:/META-INF/spring/applicationContext.xml");
         context.start();
 
+        while(true) {
+            try {
+                testDemoService(context);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            try {
+                TimeUnit.SECONDS.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         //testAction(context);
-        testDemoService(context);
+        //testDemoService(context);
         //testDemoService2(context);
         //testGroupService(context);
-        testCallbackService(context);
+        //testCallbackService(context);
         //testGenericServiceInvoke(context);
         //testGenericServiceImplement(context);
 
