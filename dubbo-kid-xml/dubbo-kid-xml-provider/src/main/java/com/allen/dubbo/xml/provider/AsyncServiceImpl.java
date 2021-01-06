@@ -43,6 +43,8 @@ public class AsyncServiceImpl implements AsyncService {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+                // 写回响应
                 asyncContext.write("异步调用 " + name + ", " + new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
             }
         }).start();

@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * 泛化实现主要用于服务者没有 API 接口实现及模型类元的情况。
+ * 泛化实现：主要用于服务者没有 API 接口实现及模型类元的情况，通常用于框架集成，比如：实现一个通用的服务 Mock 框架
  * 此例中只知道接口：com.allen.dubbo.iface.BarService，但是没有实现
  */
 @Service

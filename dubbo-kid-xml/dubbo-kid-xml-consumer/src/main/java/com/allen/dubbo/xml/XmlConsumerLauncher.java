@@ -94,7 +94,7 @@ public class XmlConsumerLauncher {
     }
 
     /**
-     * 泛化调用主要用于消费者没有 API 接口及模型类元的情况。
+     * 泛化调用：主要用于客户端没有 API 接口及模型类元的情况。
      * 此例中只知道接口：com.allen.dubbo.xml.provider.GenericTestService暴露了服务，但是本地没有接口
      *
      * @param context
