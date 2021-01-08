@@ -13,12 +13,12 @@ import org.apache.dubbo.rpc.Protocol;
 public class ExtensionLoaderUncover {
 
     public static void main(String...args) {
+        //loadExtensionFactory();
         loadProtocol();
-//        loadExtensionFactory();
     }
 
     public static void loadProtocol() {
-        ExtensionLoader.getExtensionLoader(Protocol.class).getAdaptiveExtension();
+        ExtensionLoader.getExtensionLoader(Protocol.class).getExtension("dubbo");
     }
 
     public static void loadExtensionFactory() {
